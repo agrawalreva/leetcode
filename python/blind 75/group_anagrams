@@ -1,0 +1,19 @@
+class Solution:
+    def groupAnagrams(self, strs):
+        # Dict to hold sorted word as key and list of words as value
+        d = {}
+        for s in strs:
+            sorted_str = ''.join(sorted(s))
+            # If the sorted word is not already a key in the dictionary, add it with a new list as its value
+            if sorted_str not in d:
+                d[sorted_str] = []
+            # Add the original word to the list of values for the sorted word key
+            d[sorted_str].append(s)
+        # Return the values of the dict as a list of lists
+        return list(d.values())
+
+sol = Solution()
+print(sol.groupAnagrams(["abc", "cab", "bca", "xyz", "zxy"])) # [["abc", "cab", "bca"], ["xyz", "zxy"]]
+
+# Time Complexity = O(n * k * log k)
+# Space Complexity = O(n * k)
